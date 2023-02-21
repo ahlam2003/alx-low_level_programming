@@ -1,72 +1,45 @@
-#include"main.h"
-
+#include <stdio.h>
 /**
- * numLength - returns the length of string
- *
- * @num: operand number
- *
- * Return: number of digits
-*/
-
-int numLength(int num)
-{
-	int length = 0;
-
-	if (!num)
-		return (1);
-
-	while (num)
-	{
-		num = num / 10;
-		length += 1;
-	}
-
-	return (length);
-}
-
-/**
- * main - Entry point
- *
- * Description: prints the first 98 Fibonacci numbers
- *	starting with 1 and 2 followed by a new line
- *
- *	Solution was copied from Nobert Patrick
- *	Wise, github handle: Trikcode
- *
- * Return: Always 0 (Success)
-*/
-
+ * main - print first 98 Fibonacci numbers without using long long,
+ * malloc, pointers, arrays/tables, or structcures
+ * Return: 0
+ */
 int main(void)
 {
-	int count, initial0s;
-	unsigned long f1 = 1, f2 = 2, sum, mx = 100000000, f1o = 0, f2o = 0, sumo = 0;
+	int counter, overflow;
+	unsigned long a = 1;
+	unsigned long b = 1;
+	unsigned long sum = 0;
+	long a_head, a_tail, b_head, b_tail, sum_head, sum_tail;
 
-	for (count = 1; count <= 98; ++count)
+	printf("1");
+
+	for (counter = 2; counter < 93; counter++)
 	{
-		if (f1o > 0)
-			printf("%lu", f1o);
-		initial0s = numLength(mx) - 1 - numLength(f1);
-
-		while (f1o > 0 && initial0s > 0)
-		{
-			printf("%d", 0);
-			--initial0s;
-		}
-
-		printf("%lu", f1);
-
-		sum = (f1 + f2) % mx;
-		sumo = f1o + f2o + (f1 + f2) / mx;
-		f1 = f2;
-		f1o = f2o;
-		f2 = sum;
-		f2o = sumo;
-
-		if (count != 98)
-			printf(", ");
-		else
-			printf("\n");
+		sum = a + b;
+		a = b;
+		b = sum;
+		printf(", %lu", sum);
 	}
 
+	a_head = a / 1000000000;
+	a_tail = a % 1000000000;
+	b_head = b / 1000000000;
+	b_tail = b % 1000000000;
+
+	for (; counter < 99; counter++)
+	{
+		overflow = (a_tail + b_tail) / 1000000000;
+		sum_tail = (a_tail + b_tail) - (1000000000 * overflow);
+		sum_head = (a_head + b_head) + overflow;
+
+		printf(", %lu%lu", sum_head, sum_tail);
+
+		a_head = b_head;
+		a_tail = b_tail;
+		b_head = sum_head;
+		b_tail = sum_tail;
+	}
+	printf("\n");
 	return (0);
 }
