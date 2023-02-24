@@ -1,34 +1,41 @@
 #include <stdio.h>
+#include "holberton.h"
+
 /**
-*main - program that prints either number
-*or fizz or buzz or fizzBuzz
-*
-*
-*Return: returns 0
-*/
+ * main - Entry Point
+ *
+ * Description: print Fizz to replace multiples of 3, Buzz for multiples of 5
+ * and FizzBuzz for multiples of both 3 and 5
+ *
+ * Return: 0 on success
+ */
+
 int main(void)
 {
-int num;
-while (num++ < 100)
+	int i;
 
-if ((num % 3 == 0) && (num % 5 == 0))
-printf("FizzBuzz ");
+	for (i = 1; i <= 100; i++)
+	{
 
-else if ((num % 3) == 0)
-printf("Fizz ");
+		if ((i % 3) == 0 && (i % 5) != 0)
 
-else if ((num % 5) == 0)
-{
-if (num != 100)
-printf("Buzz ");
+			printf("Fizz");
 
-else
-printf("Buzz");
+		else if ((i % 3) != 0 && (i % 5) == 0)
+
+			printf("Buzz");
+
+		else if ((i % 3) == 0 && (i % 5) == 0)
+
+			printf("FizzBuzz");
+
+		else
+			printf("%d", i);
+
+		if (i < 100)
+			printf(" ");
+	}
+	printf("\n");
+	return (0);
+
 }
-
-else
-printf("%d ", num);
-
-printf("\n");
-return (0);
-}}
