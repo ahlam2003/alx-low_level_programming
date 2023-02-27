@@ -1,9 +1,24 @@
+#include "holberton.h"
+
+/**
+ * _strlen - func to return the length of a string
+ *
+ * @s: str param
+ *
+ * Return: len of the string
+ */
+
 int _strlen(char *s)
 {
-	int counter;
+	int len = 0;
+	int i = 0;
 
-	for (counter = 0; *s != '\0'; ++s)
-		++counter;
+	while (s[i] != '\0')
+	{
+		len = len + 1;
+		i++;
+	}
 
-	return (counter);
+	return (len);
+
 }
