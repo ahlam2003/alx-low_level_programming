@@ -1,11 +1,30 @@
-#include "main.h"
-int get_bit(unsigned long int n, unsigned int index)
+#include "holberton.h"
+
+/**
+ * print_binary - prints the biinary representation of a number.
+ * @n: number to represent in binary
+ */
+
+void print_binary(unsigned long int n)
 {
-		if (index >= (sizeof(unsigned long int) * 8))
-					return (-1);
+	int c, j;
+	int flag = 0;
 
-			if ((n & (1 << index)) == 0)
-						return (0);
+	if (n == 0)
+	{
+		_putchar('0');
+		return;
+	}
 
-				return (1);
+	for (c = 63; c >= 0; c--)
+	{
+		j = n >> c;
+		if (j & 1)
+		{
+			flag = 1;
+			_putchar('1');
+		}
+		else if (flag == 1)
+			_putchar('0');
+	}
 }
